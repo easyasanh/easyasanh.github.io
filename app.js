@@ -50,8 +50,8 @@ async function load() {
     // Your sheet order:
     const name = cells[0] ?? "";
     const city = cells[1] ?? "";
-    const nadia = cells[2] ?? "";
-    const andrew = cells[3] ?? "";
+    const andrew = cells[2] ?? "";
+    const nadia = cells[3] ?? "";
     const date = cells[4] ?? "";
     const notes = cells[5] ?? "";
 

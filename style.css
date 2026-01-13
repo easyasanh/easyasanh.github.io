@@ -1,42 +1,61 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  background: #fafafa;
-  color: #111;
+  background: #fff6f6;
+  color: #2d3142;
 }
 
 header {
-  padding: 16px;
-  background: #111;
-  color: white;
+  padding: 24px;
+  background: #2d3142;
+  color: #fff6f6;
   text-align: center;
+  border-bottom: 4px solid #efb08c;
 }
 
 main {
-  padding: 12px;
+  padding: 20px;
 }
 
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 12px rgba(45,49,66,0.08);
+  border-left: 6px solid #efb08c;
 }
 
 .card h2 {
-  margin: 0 0 6px;
-  font-size: 18px;
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #2d3142;
 }
 
 .scores {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.pill {
+  background: #efb08c;
+  color: #2d3142;
+  border-radius: 20px;
+  padding: 5px 14px;
+  margin-right: 8px;
+  font-weight: 500;
 }
 
 .avg {
-  margin-top: 8px;
+  background: #f67280;
+  color: #fff6f6;
   font-weight: bold;
+}
+
+.notes {
+  margin-top: 12px;
+  font-style: italic;
+  color: #4f5d75;
 }

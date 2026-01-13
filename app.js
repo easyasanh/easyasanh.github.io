@@ -73,8 +73,8 @@ async function load() {
       </div>
 
       <div class="scores">
-        <div class="pill">Nadia: <strong>${escapeHtml(nadia)}</strong></div>
         <div class="pill">Andrew: <strong>${escapeHtml(andrew)}</strong></div>
+        <div class="pill">Nadia: <strong>${escapeHtml(nadia)}</strong></div>
         <div class="pill avg">Avg: <strong>${escapeHtml(avg)}</strong></div>
       </div>
 

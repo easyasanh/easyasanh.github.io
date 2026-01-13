@@ -89,5 +89,5 @@ load().catch((err) => {
   console.error(err);
   const container = document.getElementById("restaurant-list");
   container.textContent =
-    "Couldn’t load the sheet. Check sharing settings (Anyone with the link → Viewer).";
+    "Couldn’t load the sheet";
 });

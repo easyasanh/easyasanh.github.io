@@ -27,6 +27,7 @@ function escapeHtml(str) {
 
 async function load() {
   const container = document.getElementById("restaurant-list");
+  
   container.textContent = "Loading…";
   
   console.log("Fetching url")

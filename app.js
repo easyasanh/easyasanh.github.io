@@ -70,7 +70,7 @@ async function load() {
       <div class="top">
         <h2>${escapeHtml(name)}</h2>
         <div class="meta">
-          <span>${escapeHtml(city)}</span>
+          <span style="color:#6b705c;">📍 ${escapeHtml(city)}</span>
           ${date ? `<span>• ${escapeHtml(formatDate(date))}</span>` : ""}
         </div>
       </div>

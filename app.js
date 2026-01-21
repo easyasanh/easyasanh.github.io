@@ -12,7 +12,6 @@ function num(x) {
 }
 
 function formatDate(v) {
-  // v may be a string like "2026-01-11" or empty
   if (!v) return "";
   return String(v);
 }
@@ -29,9 +28,12 @@ function escapeHtml(str) {
 async function load() {
   const container = document.getElementById("restaurant-list");
   container.textContent = "Loading…";
-
+  
+  console.log("Fetching url")
   const res = await fetch(URL);
+  console.log("Fetching text")
   const text = await res.text();
+  console.log("Got text")
 
   // gviz wraps JSON in a function call; strip it out
   const json = JSON.parse(text.substring(47).slice(0, -2));

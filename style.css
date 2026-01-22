@@ -30,33 +30,61 @@ main {
   padding: 24px;
 }
 
+/* Controls styling */
+#controls {
+  text-align: center;
+  margin: 24px 0 28px 0;
+}
+
+#controls input[type="text"],
+#controls select {
+  padding: 8px 12px;
+  border: 1.5px solid #a3b18a;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #f8f6f2;
+  color: #384734;
+  margin-right: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#controls input[type="text"]:focus,
+#controls select:focus {
+  border-color: #6b705c;
+}
+
+/* Card styling (refined) */
 .card {
   background: #fff;
-  border-radius: 3px;         /* much less rounded, almost square */
-  padding: 12px 14px;         /* tighter padding */
-  margin-bottom: 10px;        /* less space between cards */
-  box-shadow: 0 1px 4px rgba(56,71,52,0.04); /* lighter shadow */
-  border-left: 4px solid #a3b18a; /* subtle olive accent */
-  max-width: 280px;           /* smaller card width */
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(56,71,52,0.06);
+  border-left: 5px solid #a3b18a;
+  max-width: 320px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .card h2 {
   margin: 0 0 8px;
-  font-size: 18px;
+  font-size: 20px;
   color: #384734;
   font-family: 'Georgia', serif;
 }
 
+.meta {
+  font-size: 13px;
+  color: #6b705c;
+  margin-bottom: 6px;
+}
+
 .scores {
-  display: block;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 15px;
   color: #384734;
-  text-align: left;
   font-family: 'Georgia', serif;
-  letter-spacing: 0.2px;
 }
 
 .scores strong {
@@ -70,29 +98,8 @@ main {
   margin-left: 8px;
 }
 
-.scores div {
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid #a3b18a;
-  border-radius: 0;
-  color: #384734;
-  min-width: 80px;
-  text-align: center;
-}
-
-.avg {
-  border-bottom: 2px solid #6b705c;
-  color: #6b705c;
-  font-weight: bold;
-  background: none;
-}
-
 .notes {
-  margin-top: 12px;
+  margin-top: 10px;
   font-style: italic;
   color: #6b705c;
 }

@@ -25,32 +25,44 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
-async function load() {
+function sortRows(rows, sort) {
+  return rows.slice().sort((a, b) => {
+    const ac = (a.c || []).map((c) => (c ? c.v : ""));
+    const bc = (b.c || []).map((c) => (c ? c.v : ""));
+    const aName = ac[0] ?? "";
+    const bName = bc[0] ?? "";
+    const aCity = ac[1] ?? "";
+    const bCity = bc[1] ?? "";
+    const aAndrew = num(ac[2]);
+    const bAndrew = num(bc[2]);
+    const aNadia = num(ac[3]);
+    const bNadia = num(bc[3]);
+    const aAvg = aAndrew !== null && aNadia !== null ? (aAndrew + aNadia) / 2 : -Infinity;
+    const bAvg = bAndrew !== null && bNadia !== null ? (bAndrew + bNadia) / 2 : -Infinity;
+
+    switch (sort) {
+      case "avg-desc": return bAvg - aAvg;
+      case "avg-asc": return aAvg - bAvg;
+      case "andrew-desc": return bAndrew - aAndrew;
+      case "andrew-asc": return aAndrew - bAndrew;
+      case "nadia-desc": return bNadia - aNadia;
+      case "nadia-asc": return aNadia - bNadia;
+      case "city-asc": return aCity.localeCompare(bCity);
+      case "city-desc": return bCity.localeCompare(aCity);
+      case "name-asc": return aName.localeCompare(bName);
+      case "name-desc": return bName.localeCompare(aName);
+      default: return 0;
+    }
+  });
+}
+
+let allRows = [];
+
+function renderRows(rows) {
   const container = document.getElementById("restaurant-list");
-  
-  container.textContent = "Loading…";
-  
-  console.log("Fetching url")
-  const res = await fetch(URL);
-  console.log("Fetching text")
-  const text = await res.text();
-  console.log("Got text")
-
-  // gviz wraps JSON in a function call; strip it out
-  const json = JSON.parse(text.substring(47).slice(0, -2));
-  const rows = json.table.rows || [];
-
-  if (!rows.length) {
-    container.textContent = "No rows yet — add some restaurants to the sheet 🙂";
-    return;
-  }
-
   container.innerHTML = "";
-
   rows.forEach((r) => {
     const cells = (r.c || []).map((c) => (c ? c.v : ""));
-
-    // Your sheet order:
     const name = cells[0] ?? "";
     const city = cells[1] ?? "";
     const andrew = cells[2] ?? "";
@@ -61,11 +73,10 @@ async function load() {
     const nNadia = num(nadia);
     const nAndrew = num(andrew);
     const avg =
-      nNadia !== null && nAndrew !== null ? ((nNadia + nAndrew) / 2).toFixed(1) : "—";
+      nNadia !== null && nAndrew !== null ? ((nNadia + nAndrew) / 2).toFixed(1) : "-";
 
     const card = document.createElement("div");
     card.className = "card";
-
     card.innerHTML = `
       <div class="top">
         <h2>${escapeHtml(name)}</h2>
@@ -81,13 +92,58 @@ async function load() {
       </div>
       ${notes ? `<div class="notes">${escapeHtml(notes)}</div>` : ""}
     `;
-
     container.appendChild(card);
   });
 }
 
+function filterAndSortRows() {
+  const filter = document.getElementById("filter-input")?.value.trim().toLowerCase() || "";
+  const sort = document.getElementById("sort-select")?.value || "avg-desc";
+  let rows = allRows.slice();
+
+  // Filter
+  if (filter) {
+    rows = rows.filter((r) => {
+      const cells = (r.c || []).map((c) => (c ? c.v : ""));
+      const name = (cells[0] ?? "").toLowerCase();
+      const city = (cells[1] ?? "").toLowerCase();
+      return name.includes(filter) || city.includes(filter);
+    });
+  }
+
+  // Sort
+  rows = sortRows(rows, sort);
+
+  renderRows(rows);
+}
+
+async function load() {
+  const container = document.getElementById("restaurant-list");
+  container.textContent = "Loading…";
+  const res = await fetch(URL);
+  const text = await res.text();
+  const json = JSON.parse(text.substring(47).slice(0, -2));
+  allRows = json.table.rows || [];
+
+  if (!allRows.length) {
+    container.textContent = "No rows yet - add some restaurants to the sheet 🙂";
+    return;
+  }
+
+  filterAndSortRows();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filterInput = document.getElementById("filter-input");
+  const sortSelect = document.getElementById("sort-select");
+  if (filterInput && sortSelect) {
+    filterInput.addEventListener("input", filterAndSortRows);
+    sortSelect.addEventListener("change", filterAndSortRows);
+  }
+});
+
 load().catch((err) => {
   console.error(err);
   const container = document.getElementById("restaurant-list");
-  container.textContent = "Could not load data — please check your connection or try again later.";
+  container.textContent = "Could not load data - please check your connection or try again later.";
 });

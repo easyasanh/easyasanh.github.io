@@ -89,36 +89,5 @@ async function load() {
 load().catch((err) => {
   console.error(err);
   const container = document.getElementById("restaurant-list");
-  container.innerHTML = `
-    <div class="card">
-      <div class="top">
-        <h2>Sample Bistro</h2>
-        <div class="meta">
-          <span>New York</span>
-          <span>• 2024-01-01</span>
-        </div>
-      </div>
-      <div class="scores">
-        <div class="pill">Andrew: <strong>8</strong></div>
-        <div class="pill">Nadia: <strong>9</strong></div>
-        <div class="pill avg">Avg: <strong>8.5</strong></div>
-      </div>
-      <div class="notes">Great ambiance and delicious food!</div>
-    </div>
-    <div class="card">
-      <div class="top">
-        <h2>Olive Garden</h2>
-        <div class="meta">
-          <span>San Francisco</span>
-          <span>• 2024-01-15</span>
-        </div>
-      </div>
-      <div class="scores">
-        <div class="pill">Andrew: <strong>7</strong></div>
-        <div class="pill">Nadia: <strong>8</strong></div>
-        <div class="pill avg">Avg: <strong>7.5</strong></div>
-      </div>
-      <div class="notes">Lovely pasta, friendly staff.</div>
-    </div>
-  `;
+  container.textContent = "Could not load data — please check your connection or try again later.";
 });

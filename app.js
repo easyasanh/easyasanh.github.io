@@ -136,9 +136,31 @@ async function load() {
 document.addEventListener("DOMContentLoaded", () => {
   const filterInput = document.getElementById("filter-input");
   const sortSelect = document.getElementById("sort-select");
+  const searchToggle = document.getElementById("search-toggle");
+
   if (filterInput && sortSelect) {
     filterInput.addEventListener("input", filterAndSortRows);
     sortSelect.addEventListener("change", filterAndSortRows);
+  }
+
+  if (searchToggle && filterInput) {
+    searchToggle.addEventListener("click", () => {
+      filterInput.classList.toggle("open");
+      if (filterInput.classList.contains("open")) {
+        filterInput.focus();
+      } else {
+        filterInput.value = "";
+        filterAndSortRows();
+      }
+    });
+    // Optional: close search on blur
+    filterInput.addEventListener("blur", () => {
+      setTimeout(() => {
+        filterInput.classList.remove("open");
+        filterInput.value = "";
+        filterAndSortRows();
+      }, 150);
+    });
   }
 });
 

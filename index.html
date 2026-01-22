@@ -14,7 +14,10 @@
 
   <main>
     <div id="controls" style="text-align:center; margin: 18px 0;">
-      <input type="text" id="filter-input" placeholder="Search" style="padding:6px; width:180px;">
+      <button id="search-toggle" aria-label="Search" style="background:none; border:none; cursor:pointer; font-size:20px; color:#6b705c; vertical-align:middle;">
+        🔍
+      </button>
+      <input type="text" id="filter-input" placeholder="Search" style="padding:6px; width:180px; display:none; transition:width 0.3s;" />
       <select id="sort-select" style="padding:6px;">
         <option value="avg-desc">Sort by Avg (High → Low)</option>
         <option value="avg-asc">Sort by Avg (Low → High)</option>

@@ -97,19 +97,8 @@ function renderRows(rows) {
 }
 
 function filterAndSortRows() {
-  const filter = document.getElementById("filter-input")?.value.trim().toLowerCase() || "";
   const sort = document.getElementById("sort-select")?.value || "avg-desc";
   let rows = allRows.slice();
-
-  // Filter
-  if (filter) {
-    rows = rows.filter((r) => {
-      const cells = (r.c || []).map((c) => (c ? c.v : ""));
-      const name = (cells[0] ?? "").toLowerCase();
-      const city = (cells[1] ?? "").toLowerCase();
-      return name.includes(filter) || city.includes(filter);
-    });
-  }
 
   // Sort
   rows = sortRows(rows, sort);
@@ -134,33 +123,9 @@ async function load() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const filterInput = document.getElementById("filter-input");
   const sortSelect = document.getElementById("sort-select");
-  const searchToggle = document.getElementById("search-toggle");
-
-  if (filterInput && sortSelect) {
-    filterInput.addEventListener("input", filterAndSortRows);
+  if (sortSelect) {
     sortSelect.addEventListener("change", filterAndSortRows);
-  }
-
-  if (searchToggle && filterInput) {
-    searchToggle.addEventListener("click", () => {
-      filterInput.classList.toggle("open");
-      if (filterInput.classList.contains("open")) {
-        filterInput.focus();
-      } else {
-        filterInput.value = "";
-        filterAndSortRows();
-      }
-    });
-    // Optional: close search on blur
-    filterInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        filterInput.classList.remove("open");
-        filterInput.value = "";
-        filterAndSortRows();
-      }, 150);
-    });
   }
 });
 

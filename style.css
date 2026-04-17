@@ -70,17 +70,22 @@ main {
 }
 
 .card__title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .card h2 {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 20px;
   color: #384734;
   font-family: 'Georgia', serif;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card__name {
+  display: inline-block;
 }
 
 .meta {
@@ -201,11 +206,6 @@ main {
 }
 
 @media (max-width: 480px) {
-  .card__title-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .michelin-badge {
     max-width: 100%;
   }

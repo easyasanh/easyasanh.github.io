@@ -213,8 +213,10 @@ function renderRows(rows) {
     card.innerHTML = `
       <div class="top">
         <div class="card__title-row">
-          <h2>${escapeHtml(name)}</h2>
-          ${renderMichelinBadge(michelin)}
+          <h2>
+            <span class="card__name">${escapeHtml(name)}</span>
+            ${renderMichelinBadge(michelin)}
+          </h2>
         </div>
         <div class="meta">
           <span class="meta__location">📍 ${escapeHtml(city)}</span>

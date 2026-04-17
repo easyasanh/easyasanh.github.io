@@ -146,6 +146,13 @@ main {
   padding-inline: 10px;
 }
 
+.michelin-badge--guide {
+  min-width: 0;
+  padding-inline: 10px;
+  background: #fff7f0;
+  border-color: #f1d1cf;
+}
+
 .michelin-badge__stars {
   display: inline-flex;
   align-items: center;
@@ -163,18 +170,21 @@ main {
   height: 22px;
 }
 
-.michelin-badge__icon--guide {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
 .michelin-badge__fallback {
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.michelin-badge__wordmark {
+  color: #c81d25;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 #filter-input {

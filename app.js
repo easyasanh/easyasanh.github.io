@@ -4,8 +4,6 @@ const MICHELIN_STAR_ICON =
   "https://guide.michelin.com/assets/images/icons/michelin-star_8519.svg";
 const MICHELIN_BIB_ICON =
   "https://guide.michelin.com/assets/images/icons/MICHELINguide-symboleBibendum_COLOR_RGB.svg";
-const MICHELIN_GUIDE_ICON =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Michelin_Guide_logo.svg/250px-Michelin_Guide_logo.svg.png";
 
 // Google Visualization endpoint (works with "Anyone with the link" viewing)
 const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(
@@ -89,19 +87,15 @@ function parseMichelin(value) {
 
   if (normalized.includes("selected")) {
     return {
-      type: "selected",
-      label: "Michelin Selected",
-      icon: MICHELIN_GUIDE_ICON,
-      alt: "Michelin Guide"
+      type: "guide",
+      label: "Michelin"
     };
   }
 
   if (normalized.includes("guide")) {
     return {
       type: "guide",
-      label: "Michelin Guide",
-      icon: MICHELIN_GUIDE_ICON,
-      alt: "Michelin Guide"
+      label: "Michelin"
     };
   }
 
@@ -136,10 +130,10 @@ function renderMichelinBadge(michelin) {
     `;
   }
 
-  if (michelin.type === "selected" || michelin.type === "guide") {
+  if (michelin.type === "guide") {
     return `
       <div class="michelin-badge michelin-badge--guide" aria-label="${escapeHtml(michelin.label)}">
-        <img class="michelin-badge__icon michelin-badge__icon--guide" src="${michelin.icon}" alt="${escapeHtml(michelin.alt)}" />
+        <span class="michelin-badge__wordmark">${escapeHtml(michelin.label)}</span>
       </div>
     `;
   }

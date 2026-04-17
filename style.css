@@ -147,8 +147,8 @@ main {
 }
 
 .michelin-badge--guide {
-  min-width: 0;
-  padding-inline: 10px;
+  min-width: 36px;
+  padding: 6px;
   background: #fff7f0;
   border-color: #f1d1cf;
 }
@@ -180,11 +180,11 @@ main {
 
 .michelin-badge__wordmark {
   color: #c81d25;
-  font-size: 11px;
+  font-size: 6px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
 }
 
 #filter-input {

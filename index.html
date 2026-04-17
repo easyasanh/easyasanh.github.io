@@ -7,32 +7,53 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Olive You</title>
-  <link rel="stylesheet" href="style.css?v=20260417-4" />
+  <link rel="stylesheet" href="style.css?v=20260417-5" />
 </head>
 <body>
-  <header>
-    <img src="logo copy.png" alt="Olive You Logo" style="max-width:440px; margin-bottom:10px;" />
-    <p class="tagline">The most objective food reviews by expert food critics Andrew and Nadia</p>
-  </header>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="brand-lockup">
+          <img src="logo copy.png" alt="Olive You Logo" class="brand-lockup__logo" />
+          <p class="tagline">The most objective food reviews by expert food critics Andrew and Nadia</p>
+        </div>
+      </div>
 
-  <main>
-    <div id="controls" style="text-align:center; margin: 18px 0;">
-      <select id="sort-select" style="padding:6px; width:160px;">
-        <option value="avg-desc">Avg (High → Low)</option>
-        <option value="avg-asc">Avg (Low → High)</option>
-        <option value="andrew-desc">Andrew (High → Low)</option>
-        <option value="andrew-asc">Andrew (Low → High)</option>
-        <option value="nadia-desc">Nadia (High → Low)</option>
-        <option value="nadia-asc">Nadia (Low → High)</option>
-        <option value="city-asc">City (A → Z)</option>
-        <option value="city-desc">City (Z → A)</option>
-        <option value="name-asc">Name (A → Z)</option>
-        <option value="name-desc">Name (Z → A)</option>
-      </select>
-    </div>
-    <div id="restaurant-list">Loading…</div>
-  </main>
+      <aside class="hero-panel">
+        <div class="stat">
+          <span>Restaurants reviewed</span>
+          <strong id="restaurant-count">0</strong>
+        </div>
+        <div class="stat">
+          <span>Michelin spots</span>
+          <strong id="michelin-count">0</strong>
+        </div>
+      </aside>
+    </section>
 
-  <script src="app.js?v=20260417-4"></script>
+    <main class="layout">
+      <section class="toolbar" aria-label="Sort restaurants">
+        <label class="sort-control" for="sort-select">
+          <span>Sort by</span>
+          <select id="sort-select">
+            <option value="avg-desc">Avg (High → Low)</option>
+            <option value="avg-asc">Avg (Low → High)</option>
+            <option value="andrew-desc">Andrew (High → Low)</option>
+            <option value="andrew-asc">Andrew (Low → High)</option>
+            <option value="nadia-desc">Nadia (High → Low)</option>
+            <option value="nadia-asc">Nadia (Low → High)</option>
+            <option value="city-asc">City (A → Z)</option>
+            <option value="city-desc">City (Z → A)</option>
+            <option value="name-asc">Name (A → Z)</option>
+            <option value="name-desc">Name (Z → A)</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="restaurant-list" class="list" aria-live="polite">Loading…</section>
+    </main>
+  </div>
+
+  <script src="app.js?v=20260417-5"></script>
 </body>
 </html>

@@ -188,6 +188,28 @@ function sortRows(rows, sort) {
 let allRows = [];
 let allColumns = [];
 
+function updateStats() {
+  const restaurantCount = document.getElementById("restaurant-count");
+  const michelinCount = document.getElementById("michelin-count");
+  const michelinColumnIndex = getMichelinColumnIndex();
+  const count = allRows.length;
+  const michelinSpots = allRows.filter((row) => {
+    if (michelinColumnIndex < 0) {
+      return false;
+    }
+
+    return parseMichelin(getCellValue(row, michelinColumnIndex));
+  }).length;
+
+  if (restaurantCount) {
+    restaurantCount.textContent = String(count);
+  }
+
+  if (michelinCount) {
+    michelinCount.textContent = String(michelinSpots);
+  }
+}
+
 function renderRows(rows) {
   const container = document.getElementById("restaurant-list");
   const michelinColumnIndex = getMichelinColumnIndex();
@@ -199,7 +221,6 @@ function renderRows(rows) {
     const andrew = getCellValue(row, 2);
     const nadia = getCellValue(row, 3);
     const date = getCellValue(row, 4);
-    const notes = getCellValue(row, 5);
     const michelinValue = michelinColumnIndex >= 0 ? getCellValue(row, michelinColumnIndex) : "";
     const michelin = parseMichelin(michelinValue);
 
@@ -224,11 +245,10 @@ function renderRows(rows) {
         </div>
       </div>
       <div class="scores">
-        Andrew: <strong>${escapeHtml(andrew)}</strong> &nbsp;|&nbsp;
-        Nadia: <strong>${escapeHtml(nadia)}</strong>
-        <span class="avg">&nbsp;Avg: <strong>${escapeHtml(avg)}</strong></span>
+        <span>Andrew <strong>${escapeHtml(andrew)}</strong></span>
+        <span>Nadia <strong>${escapeHtml(nadia)}</strong></span>
+        <span>Avg <strong>${escapeHtml(avg)}</strong></span>
       </div>
-      ${notes ? `<div class="notes">${escapeHtml(notes)}</div>` : ""}
     `;
     container.appendChild(card);
   });
@@ -257,6 +277,7 @@ async function load() {
     return;
   }
 
+  updateStats();
   filterAndSortRows();
 }
 

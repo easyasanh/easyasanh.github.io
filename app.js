@@ -4,6 +4,8 @@ const MICHELIN_STAR_ICON =
   "https://guide.michelin.com/assets/images/icons/michelin-star_8519.svg";
 const MICHELIN_BIB_ICON =
   "https://guide.michelin.com/assets/images/icons/MICHELINguide-symboleBibendum_COLOR_RGB.svg";
+const MICHELIN_GUIDE_ICON =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Michelin_Guide_logo.svg/250px-Michelin_Guide_logo.svg.png";
 
 // Google Visualization endpoint (works with "Anyone with the link" viewing)
 const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(
@@ -88,7 +90,18 @@ function parseMichelin(value) {
   if (normalized.includes("selected")) {
     return {
       type: "selected",
-      label: "Michelin Selected"
+      label: "Michelin Selected",
+      icon: MICHELIN_GUIDE_ICON,
+      alt: "Michelin Guide"
+    };
+  }
+
+  if (normalized.includes("guide")) {
+    return {
+      type: "guide",
+      label: "Michelin Guide",
+      icon: MICHELIN_GUIDE_ICON,
+      alt: "Michelin Guide"
     };
   }
 
@@ -107,7 +120,6 @@ function renderMichelinBadge(michelin) {
     return `
       <div class="michelin-badge michelin-badge--bib" aria-label="${escapeHtml(michelin.label)}">
         <img class="michelin-badge__icon michelin-badge__icon--bib" src="${michelin.icon}" alt="${escapeHtml(michelin.alt)}" />
-        <span>${escapeHtml(michelin.label)}</span>
       </div>
     `;
   }
@@ -120,14 +132,21 @@ function renderMichelinBadge(michelin) {
     return `
       <div class="michelin-badge michelin-badge--star" aria-label="${escapeHtml(michelin.label)}">
         <span class="michelin-badge__stars">${starsMarkup}</span>
-        <span>${escapeHtml(michelin.label)}</span>
+      </div>
+    `;
+  }
+
+  if (michelin.type === "selected" || michelin.type === "guide") {
+    return `
+      <div class="michelin-badge michelin-badge--guide" aria-label="${escapeHtml(michelin.label)}">
+        <img class="michelin-badge__icon michelin-badge__icon--guide" src="${michelin.icon}" alt="${escapeHtml(michelin.alt)}" />
       </div>
     `;
   }
 
   return `
     <div class="michelin-badge michelin-badge--text" aria-label="${escapeHtml(michelin.label)}">
-      <span>${escapeHtml(michelin.label)}</span>
+      <span class="michelin-badge__fallback">${escapeHtml(michelin.label)}</span>
     </div>
   `;
 }

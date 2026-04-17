@@ -123,19 +123,14 @@ main {
 .michelin-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   flex-shrink: 0;
-  min-height: 34px;
-  padding: 6px 10px;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 6px;
   border-radius: 999px;
   background: #fffaf2;
   border: 1px solid #eadfca;
-  color: #7a1f1f;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .michelin-badge--bib {
@@ -148,6 +143,7 @@ main {
 
 .michelin-badge--text {
   color: #8c6b2f;
+  padding-inline: 10px;
 }
 
 .michelin-badge__stars {
@@ -158,13 +154,27 @@ main {
 
 .michelin-badge__icon {
   display: block;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 
 .michelin-badge__icon--bib {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
+}
+
+.michelin-badge__icon--guide {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.michelin-badge__fallback {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 #filter-input {
